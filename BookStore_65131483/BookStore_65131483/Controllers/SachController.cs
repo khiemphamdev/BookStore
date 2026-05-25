@@ -23,7 +23,7 @@ namespace BookStore_65131483.Controllers
             return View(list);
         }
 
-        // 2.THÊM SÁCH MỚI
+        // 2. GET: THÊM SÁCH
         public ActionResult ThemSach()
         {
             LoadDropdowns();
@@ -40,6 +40,8 @@ namespace BookStore_65131483.Controllers
                 LoadDropdowns(sach.MaTacGia, sach.MaTheLoai);
                 return View(sach);
             }
+
+            // Phòng trường hợp TieuDe bị null bằng toán tử null-coalescing (??)
             string tieuDeForm = (sach.TieuDe ?? "").Trim().ToLower();
 
             // Kiểm tra sách đã tồn tại chưa
@@ -71,7 +73,7 @@ namespace BookStore_65131483.Controllers
             return RedirectToAction("DsSach");
         }
 
-        // 4.SỬA SÁCH
+        // 4. GET: SỬA SÁCH
         public ActionResult SuaSach(int id)
         {
             var sach = db.SACHes.Find(id);
@@ -81,6 +83,7 @@ namespace BookStore_65131483.Controllers
             return View(sach);
         }
 
+        // 5. POST: SỬA SÁCH
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SuaSach(SACH sach)
@@ -101,7 +104,7 @@ namespace BookStore_65131483.Controllers
                 oldSach.AnhBia = newImagePath;
             }
 
-            // CẬP NHẬT SÁCH
+            // Đồng bộ dữ liệu cập nhật ngắn gọn
             oldSach.TieuDe = sach.TieuDe;
             oldSach.MaTacGia = sach.MaTacGia;
             oldSach.MaTheLoai = sach.MaTheLoai;
@@ -114,7 +117,7 @@ namespace BookStore_65131483.Controllers
             return RedirectToAction("DsSach");
         }
 
-        // 5. XÓA SÁCH
+        // 6. XÓA SÁCH
         public ActionResult XoaSach(int id)
         {
             var sach = db.SACHes.Find(id);
@@ -133,21 +136,22 @@ namespace BookStore_65131483.Controllers
             db.SaveChanges();
             return RedirectToAction("DsSach");
         }
-
         private void LoadDropdowns(int? selectedTacGia = null, int? selectedTheLoai = null)
         {
             ViewBag.MaTacGia = new SelectList(db.TACGIAs, "MaTacGia", "TenTacGia", selectedTacGia);
             ViewBag.MaTheLoai = new SelectList(db.THELOAIs, "MaTheLoai", "TenTheLoai", selectedTheLoai);
         }
 
-        // Hàm xử lý Upload ảnh 
+        // Hàm xử lý Upload ảnh tập trung (Sửa bug Guid ở code cũ và tái sử dụng cho cả Thêm/Sửa)
         private string ProcessUploadImage(HttpPostedFileBase file)
         {
             if (file != null && file.ContentLength > 0)
             {
-                string originalFileName = Path.GetFileName(file.FileName);             
+                string originalFileName = Path.GetFileName(file.FileName);
+                // Tạo tên file duy nhất bằng Guid để tránh ghi đè tệp trùng tên lên server
                 string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(originalFileName);
                 string serverPath = Server.MapPath("~/Images/" + uniqueFileName);
+
                 file.SaveAs(serverPath);
                 return "/Images/" + uniqueFileName;
             }
