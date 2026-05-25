@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "DashBoard";
+    Layout = "~/Views/Shared/_LayoutAdminPage.cshtml";
+}
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon" style="background: #e0f2fe; color: #0369a1">
+            <i class="fas fa-dollar-sign"></i>
+        </div>
+        <div>
+            <p style="color: #64748b; font-size: 14px">Doanh thu</p>
+            <p class="card-text fs-4">@String.Format("{0:N0}", ViewBag.TongDoanhThu ?? 0) đ</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon" style="background: #dcfce7; color: #15803d">
+            <i class="fas fa-shopping-basket"></i>
+        </div>
+        <div>
+            <p style="color: #64748b; font-size: 14px">Đơn hàng</p>
+            <p class="card-text fs-4">@(ViewBag.TongDonHang ?? 0)</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon" style="background: #fef9c3; color: #a16207">
+            <i class="fas fa-book"></i>
+        </div>
+        <div>
+            <p style="color: #64748b; font-size: 14px">Sách đã bán</p>
+            <p class="card-text fs-4">@(ViewBag.SachDaBan ?? 0) cuốn</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon" style="background: #f3e8ff; color: #7e22ce">
+            <i class="fas fa-user-plus"></i>
+        </div>
+        <div>
+            <p style="color: #64748b; font-size: 14px">Khách mới</p>
+            <p class="card-text fs-4">@(ViewBag.SoKhachHang ?? 0)</p>
+        </div>
+    </div>
+</div>
