@@ -259,6 +259,7 @@
     <Content Include="Views\Shared\__Notifications.cshtml" />
     <Content Include="Views\Shared\_LayoutAdminPage.cshtml" />
     <Content Include="Views\Sach\DsSach.cshtml" />
+    <Content Include="Views\Sach\ThemSach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

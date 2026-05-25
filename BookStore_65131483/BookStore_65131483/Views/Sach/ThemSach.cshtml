@@ -1,0 +1,118 @@
+﻿@model BookStore_65131483.Models.SACH
+
+@{
+    ViewBag.Title = "Thêm sách";
+    Layout = "~/Views/Shared/_LayoutAdminPage.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">➕ Thêm sách mới</h5>
+        </div>
+
+        <div class="card-body">
+            @using (Html.BeginForm("ThemSach", "Sach", FormMethod.Post,
+                new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+                <div class="row">
+                    <!-- CỘT TRÁI -->
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.TieuDe, "Tiêu đề")
+                            @Html.TextBoxFor(m => m.TieuDe, new { @class = "form-control" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.MaTacGia, "Tác giả")
+                            @Html.DropDownListFor(m => m.MaTacGia,
+                                (SelectList)ViewBag.MaTacGia,
+                                "-- Chọn tác giả --",
+                                new { @class = "form-control" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.MaTheLoai, "Thể loại")
+                            @Html.DropDownListFor(m => m.MaTheLoai,
+                                (SelectList)ViewBag.MaTheLoai,
+                                "-- Chọn thể loại --",
+                                new { @class = "form-control" })
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.GiaBan, "Giá bán")
+                                @Html.TextBoxFor(m => m.GiaBan,
+                                    new { @class = "form-control", type = "number", min = "0" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.SoLuongTon, "Số lượng")
+                                @Html.TextBoxFor(m => m.SoLuongTon,
+                                    new { @class = "form-control", type = "number", min = "0" })
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.NgonNgu, "Ngôn ngữ")
+                            @Html.TextBoxFor(m => m.NgonNgu, new { @class = "form-control" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.MoTa, "Mô tả")
+                            @Html.TextAreaFor(m => m.MoTa,
+                                new { @class = "form-control", rows = 4 })
+                        </div>
+                    </div>
+
+                    <!-- CỘT PHẢI -->
+                    <div class="col-md-4 text-center">
+                        <label class="form-label fw-bold">Ảnh bìa</label>
+
+                        <input type="file" id="AnhBiaInput" name="AnhBia"
+                               accept="image/*" hidden />
+
+                        <img id="AnhBiaPreview"
+                             src="@(string.IsNullOrEmpty(Model?.AnhBia)
+                                 ? Url.Content("~/Images/no-image.jpg")
+                                 : Url.Content(Model.AnhBia))"
+                             class="img-thumbnail mb-2"
+                             style="width:180px;height:220px;object-fit:contain;cursor:pointer;"
+                             title="Click để chọn ảnh" />
+
+                        @*<div class="text-muted small">
+                                Chọn ảnh
+                            </div>*@
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="text-end">
+                    <a href="@Url.Action("DsSach", "Sach")" class="btn btn-secondary">
+                        ⬅ Quay lại
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        💾 Lưu sách
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    const input = document.getElementById("AnhBiaInput");
+    const preview = document.getElementById("AnhBiaPreview");
+
+    preview.onclick = () => input.click();
+
+    input.onchange = () => {
+        if (input.files[0]) {
+            preview.src = URL.createObjectURL(input.files[0]);
+        }
+    };
+</script>

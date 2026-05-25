@@ -16,10 +16,12 @@ namespace BookStore_65131483.Controllers
         public ActionResult DsSach()
         {
             var list = db.SACHes
-                         .Include(s => s.TACGIA)
-                         .Include(s => s.THELOAI)
-                         .Where(s => s.IsActive == true)
-                         .ToList();
+                  .Include(s => s.TACGIA)
+                  .Include(s => s.THELOAI)
+                  .Where(s => s.IsActive == true)
+                  .OrderByDescending(s => s.NgayTao)
+                  .ToList();
+
             return View(list);
         }
 
