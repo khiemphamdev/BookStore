@@ -1,0 +1,82 @@
+﻿@model IEnumerable<BookStore_65131483.Models.SACH>
+
+
+
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+
+    var grid = new WebGrid(
+        source: Model,
+        rowsPerPage: 5,
+        canPage: true,
+        canSort: true
+    );
+    Layout = "~/Views/Shared/_LayoutAdminPage.cshtml";
+}
+<style>
+    .grid-footer {
+        width: 100%;
+        text-align: center;
+    }
+
+    .grid-column {
+        height: 94px;
+    }
+
+    table.table td,
+    table.table th {
+        vertical-align: middle;
+    }
+
+    table.table tbody tr {
+        height: 100px; /* chiều cao cố định */
+    }
+</style>
+<h3 style="margin-bottom: 10px;">Quản lý Sách</h3>
+
+<a href="@Url.Action("ThemSach", "Sach_65131483")" class="btn btn-success" style="margin: 20px auto;">➕ Thêm sách</a>
+
+@grid.GetHtml(
+    tableStyle: "table table-bordered table-striped text-center",
+    headerStyle: "thead-dark",
+    footerStyle: "grid-footer",
+    fillEmptyRows: true,
+    alternatingRowStyle: "alternatingRowStyle",
+    columns: new[]
+    {
+        grid.Column("STT", format: (item) => item.WebGrid.Rows.IndexOf(item) + 1 + grid.PageIndex * grid.RowsPerPage),
+       grid.Column(
+            columnName: "AnhBia",
+            header: "Ảnh bìa",
+
+            format: (item) => new HtmlString($"<img src='{item.AnhBia}' width='50' alt='{item.TieuDe}' />")),
+        grid.Column("TieuDe", "Tiêu đề"),
+        grid.Column(
+            header: "Tên tác giả",
+            format: (item) => item.TACGIA?.TenTacGia ?? ""
+        ),
+        grid.Column(
+            header: "Tên thể loại",
+            format: (item) => item.TheLoai?.TenTheLoai ?? ""
+        ),
+
+       grid.Column(
+        "GiaBan",
+    "Giá bán",
+    format: item => string.Format("{0:N0}", item.GiaBan)
+),
+
+        grid.Column("SoLuongTon", "Số lượng"),
+         grid.Column("NgonNgu", "Ngôn ngữ"),
+
+        grid.Column(
+            header: "Hành động",
+            format: item => Html.Raw(
+                $"<a class='btn btn-warning btn-sm' href='{Url.Action("SuaSach", "Sach_65131483", new { id = item.MaSach })}'>Sửa</a> " +
+                $"<a class='btn btn-danger btn-sm' href='{Url.Action("XoaSach", "Sach_65131483", new { id = item.MaSach })}' " +
+                $"onclick='return confirm(\"Xóa sách này?\")'>Xóa</a>"
+                )
+
+        )
+    }
+)

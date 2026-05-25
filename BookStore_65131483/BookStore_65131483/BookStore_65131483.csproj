@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,10 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Account.css" />
+    <Content Include="Content\AdminPage.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -255,42 +256,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
-    <Content Include="Views\TaiKhoan_65131483\Register.cshtml" />
-    <Content Include="Views\TaiKhoan_65131483\Login.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdminPage.cshtml" />
-    <Content Include="Views\TrangAdmin_65131483\UserList.cshtml" />
-    <Content Include="Views\TrangAdmin_65131483\EditUser.cshtml" />
-    <Content Include="Views\TacGia_65131483\AuthorList.cshtml" />
-    <Content Include="Views\TacGia_65131483\EditAuthor.cshtml" />
-    <Content Include="Views\TacGia_65131483\AddAuthor.cshtml" />
-    <Content Include="Views\TheLoai_65131483\DsTheLoai.cshtml" />
-    <Content Include="Views\TheLoai_65131483\ThemTheLoai.cshtml" />
-    <Content Include="Views\TheLoai_65131483\SuaTheLoai.cshtml" />
-    <Content Include="Views\Sach_65131483\DsSach.cshtml" />
-    <Content Include="Views\Sach_65131483\ThemSach.cshtml" />
-    <Content Include="Views\Sach_65131483\SuaSach.cshtml" />
-    <Content Include="Views\TrangAdmin_65131483\DashBoard.cshtml" />
-    <Content Include="Views\DonHang_65131483\XemGioHang.cshtml" />
-    <Content Include="Views\ChiTietSach_65131483\ChiTietSach.cshtml" />
-    <Content Include="Views\TrangAdmin_65131483\OrderList.cshtml" />
-    <Content Include="Views\TrangAdmin_65131483\XemCTDH.cshtml" />
-    <Content Include="Views\Shared\_LayoutAccountPage.cshtml" />
-    <Content Include="Views\TaiKhoan_65131483\TaiKhoan.cshtml" />
-    <Content Include="Views\TaiKhoan_65131483\DonHang.cshtml" />
-    <Content Include="Views\TaiKhoan_65131483\ChiTietDonHang.cshtml" />
-    <Content Include="Views\TaiKhoan_65131483\CommentCuaToi.cshtml" />
-    <Content Include="Views\DanhGia_65131483\DanhGia.cshtml" />
     <Content Include="Views\Shared\__Notifications.cshtml" />
-    <Content Include="Views\DonHang_65131483\ThanhToan.cshtml" />
-    <Content Include="Views\TimKiem_65131483\TimKiem.cshtml" />
-    <Content Include="Views\TimKiem_65131483\_DSSach.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdminPage.cshtml" />
+    <Content Include="Views\Sach\DsSach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\DanhMuc_65131483\" />
-    <Folder Include="Views\Sach\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -355,10 +327,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

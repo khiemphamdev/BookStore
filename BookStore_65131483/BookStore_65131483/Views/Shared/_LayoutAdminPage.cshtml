@@ -10,17 +10,16 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/AdminPage.css" rel="stylesheet"/>
+    <link href="~/Content/AdminPage.css" rel="stylesheet" />
     <style>
-
     </style>
 </head>
 
 <body>
     <div class="sidebar">
-        <div class="sidebar-brand">ZenBooks Admin</div>
+        <div class="sidebar-brand"> Admin</div>
         <nav>
-            <a href="@Url.Action("DashBoard", "TrangAdmin_65131483")" class="menu-item active"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="@Url.Action("Dashboard", "TrangAdmin_65131483")" class="menu-item"><i class="fas fa-pen-nib"></i> Dashboard</a>
             <a href="@Url.Action("AuthorList", "TacGia_65131483")" class="menu-item"><i class="fas fa-pen-nib"></i> Quản lý tác giả</a>
             <a href="@Url.Action("DsTheLoai", "TheLoai_65131483")" class="menu-item"><i class="fas fa-tags"></i> Quản lý Thể loại</a>
 
@@ -35,13 +34,13 @@
 
     <div class="main-panel">
         <header>
-           @* <h1>Tổng quan</h1>*@
+            @* <h1>Tổng quan</h1>*@
             <div class="user-info">
                 <span>Chào, Admin <strong>Quản lý</strong></span>
             </div>
         </header>
 
-        
+
 
         <div class="content-box">@RenderBody()</div>
     </div>
