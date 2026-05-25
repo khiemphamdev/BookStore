@@ -38,8 +38,8 @@
         grid.Column(
             header: "Hành động",
             format: item => Html.Raw(
-                $"<a class='btn btn-warning btn-sm' href='{Url.Action("EditUser", "TrangAdmin_65131483", new { id = item.MaTK })}'>Sửa</a> " +
-                $"<a class='btn btn-danger btn-sm' href='{Url.Action("DeleteUser", "TrangAdmin_65131483", new { id = item.MaTK })}' " +
+                $"<a class='btn btn-warning btn-sm' href='{Url.Action("EditUser", "TrangAdmin", new { id = item.MaTK })}'>Sửa</a> " +
+                $"<a class='btn btn-danger btn-sm' href='{Url.Action("DeleteUser", "TrangAdmin", new { id = item.MaTK })}' " +
                 $"onclick='return confirm(\"Xóa tài khoản này?\")'>Xóa</a>"
                 )
 

@@ -269,6 +269,9 @@
     <Content Include="Views\TheLoai\SuaTheLoai.cshtml" />
     <Content Include="Views\TrangAdmin\Dashboard.cshtml" />
     <Content Include="Views\TrangAdmin\UserList.cshtml" />
+    <Content Include="Views\TrangAdmin\EditUser.cshtml" />
+    <Content Include="Views\TrangAdmin\OrderList.cshtml" />
+    <Content Include="Views\TrangAdmin\XemCTDH.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
