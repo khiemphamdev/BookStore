@@ -1,0 +1,93 @@
+﻿@model List<BookStore_65131483.Models.SACH>
+
+@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<style>
+    .book-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(220px, 330px));
+        gap: 30px;
+        padding-bottom: 60px;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+<section class="hero">
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h1>Mở ra thế giới mới<br />qua từng trang sách</h1>
+            <p>
+                Khám phá bộ sưu tập sách văn học, kinh tế và kỹ năng sống được tuyển
+                chọn kỹ lưỡng dành riêng cho bạn.
+            </p>
+            <a href="#Mua" class="btn btn-primary">Mua Ngay</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Sách hay" />
+        </div>
+    </div>
+</section>
+
+<section class="container" id="featured">
+    <div class="section-title">
+        <h2 id="Mua">Sách Mới Về</h2>
+    </div>
+    <div class="book-grid">
+        @foreach (var item in Model)
+        {
+            <div class="book-card">
+                <a href="@Url.Action("ChiTietSach", "ChiTietSach_65131483", new { id = item.MaSach })">
+                    <div class="book-thumb">
+                        <img src="@item.AnhBia" alt="@item.TieuDe" />
+                    </div>
+                </a>
+                <div class="book-info">
+                    <h3>
+                        <a href="@Url.Action("ChiTietSach", "ChiTietSach_65131483", new { id = item.MaSach })">
+                            @item.TieuDe
+                        </a>
+                    </h3>
+                    <p class="book-author">@item.TACGIA.TenTacGia</p>
+                    <div class="book-price">@item.GiaBan.ToString("N0") đ</div>
+                    <a  class="btn btn-add add-to-cart" data-id="@item.MaSach" data-gia="@item.GiaBan"><i class="fas fa-cart-plus"></i> Thêm vào giỏ</a>
+                </div>
+            </div>
+        }
+    </div>
+
+</section>
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+$(document).ready(function(){
+    $(".add-to-cart").click(function(){
+
+        console.log("da bam vao");
+        var maSach = $(this).data("id");
+        var donGia = $(this).data("gia");
+
+        $.ajax({
+            url: '@Url.Action("ThemGioHang", "DonHang_65131483")',
+            type: 'POST',
+            data: { maSach: maSach, soLuong: 1, donGia: donGia },
+            success: function(res){
+                if(res.success){
+
+
+                    alert("Đã thêm vào giỏ hàng")
+                } else {
+                    alert(res.message);
+                }
+            },
+            error: function(xhr, status, error){
+                console.log("Lỗi Ajax:", error);
+            }
+        });
+    });
+});
+    </script>
+}

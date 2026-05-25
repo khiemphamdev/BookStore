@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <title>Book Store</title>
+    <link rel="stylesheet" href="~/Content/Account.css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet" />
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+            <a href="@Url.Action("Index", "Home")" class="logo"><i class="fas fa-book-open"></i> ZenBooks</a>
+
+
+
+            <nav class="nav-links">
+                <a href="@Url.Action("Index", "Home")">Trang chủ</a>
+                <a href="@Url.Action("TimKiem", "TimKiem_65131483")">Sách Mới</a>
+                <a href="#">Best Seller</a>
+                <a href="#">Blog</a>
+            </nav>
+
+            <div class="icons">
+                <a href="#"><i class="far fa-heart"></i></a>
+                <a href="@Url.Action("XemGioHang", "DonHang_65131483")"><i class="fas fa-shopping-cart"></i></a>
+                <a href="@Url.Action("TaiKhoan", "TaiKhoan_65131483")"><i class="far fa-user"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU -->
+
+    <div class="container">
+        <div class="account-layout">
+            <aside class="user-sidebar">
+                <div class="user-info-header">
+                    <div class="user-avatar">A</div>
+                    <h3 class="user-name">Trang tài khoản</h3>
+                    <div class="user-rank">
+                        <i class="fas fa-crown"></i> Thành viên
+                    </div>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li class="active">
+                        <a href="@Url.Action("TaiKhoan", "TaiKhoan_65131483")"><i class="fas fa-user-circle"></i> Thông tin tài khoản</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("DonHang", "TaiKhoan_65131483")"><i class="fas fa-shopping-bag"></i> Đơn hàng của tôi</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("CommentCuaToi", "TaiKhoan_65131483")"><i class="fas fa-heart"></i> Đánh giá của tôi</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-map-marker-alt"></i> Sổ địa chỉ</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-bell"></i> Thông báo</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-key"></i> Đổi mật khẩu</a>
+                    </li>
+                    <li style="margin-top: 20px; border-top: 1px solid #eee; pt: 10px">
+                        <a href="@Url.Action("Logout","TaiKhoan_65131483")" style="color: #e74c3c"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                    </li>
+                </ul>
+            </aside>
+
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 BookStore | Liên hệ: book@store.com</p>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+@RenderSection("scripts", required: false)
+
+<style>
+    /* ===== LAYOUT CHUNG ===== */
+    .account-container {
+        display: flex;
+        min-height: calc(100vh - 60px);
+        background: #f9fafb;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+        width: 300px;
+        background: #ffffff;
+        border-right: 1px solid #e5e7eb;
+        padding: 20px;
+    }
+
+    .sidebar-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .avatar {
+        width: 60px;
+        height: 60px;
+        background: #e0f2fe;
+        color: #0284c7;
+        border-radius: 50%;
+        margin: 0 auto 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 22px;
+    }
+
+    .user-name {
+        font-size: 15px;
+        color: #334155;
+    }   
+
+    /* ===== MENU ===== */
+    .menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .menu li {
+            margin-bottom: 8px;
+        }
+
+            .menu li a {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 14px;
+                color: #475569;
+                text-decoration: none;
+                border-radius: 8px;
+                transition: all 0.2s ease;
+                font-size: 16px;
+            }
+
+            
+
+         
+            .menu li.logout a {
+                margin-top: 20px;
+               
+                color: #b91c1c;
+            }
+
+    /* ===== CONTENT ===== */
+    .content {
+        flex: 1;
+        padding: 30px;
+        background: #f9fafb;
+    }
+
+    /* ===== CARD CHUNG ===== */
+    .card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+        background: #ffffff;
+        border-top: 1px solid #e5e7eb;
+        color: #64748b;
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+    }
+
+</style>
