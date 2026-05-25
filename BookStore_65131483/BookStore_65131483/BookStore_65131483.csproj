@@ -135,16 +135,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ChiTietSach_65131483Controller.cs" />
-    <Compile Include="Controllers\DanhGia_65131483Controller.cs" />
-    <Compile Include="Controllers\DonHang_65131483Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Sach_65131483Controller.cs" />
-    <Compile Include="Controllers\TacGia_65131483Controller.cs" />
-    <Compile Include="Controllers\TaiKhoan_65131483Controller.cs" />
-    <Compile Include="Controllers\TheLoai_65131483Controller.cs" />
-    <Compile Include="Controllers\TimKiem_65131483Controller.cs" />
-    <Compile Include="Controllers\TrangAdmin_65131483Controller.cs" />
+    <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -296,7 +288,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\DanhMuc_65131483\" />
+    <Folder Include="Views\Sach\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

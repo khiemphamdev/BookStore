@@ -85,3 +85,7 @@ C:\lap trinh\asp.net web\BookStore_65131483\BookStore_65131483\bin\PagedList.dll
 C:\lap trinh\asp.net web\BookStore_65131483\BookStore_65131483\bin\PagedList.Mvc.dll
 C:\lap trinh\asp.net web\BookStore_65131483\BookStore_65131483\bin\PagedList.xml
 C:\lap trinh\asp.net web\BookStore_65131483\BookStore_65131483\bin\PagedList.Mvc.xml
+C:\lap trinh\asp.net web\BookStore_65131483\BookStore_65131483\BookStore_65131483\obj\Debug\BookStore_65131483.csproj.AssemblyReference.cache
+C:\lap trinh\asp.net web\BookStore_65131483\BookStore_65131483\BookStore_65131483\obj\Debug\BookStore_65131483.csproj.CoreCompileInputs.cache
+C:\lap trinh\asp.net web\BookStore_65131483\BookStore_65131483\BookStore_65131483\obj\Debug\BookStore_65131483.dll
+C:\lap trinh\asp.net web\BookStore_65131483\BookStore_65131483\BookStore_65131483\obj\Debug\BookStore_65131483.pdb
