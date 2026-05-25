@@ -262,11 +262,13 @@
     <Content Include="Views\Sach\DsSach.cshtml" />
     <Content Include="Views\Sach\ThemSach.cshtml" />
     <Content Include="Views\Sach\SuaSach.cshtml" />
+    <Content Include="Views\TheLoai\DsTheLoai.cshtml" />
+    <Content Include="Views\TheLoai\ThemTheLoai.cshtml" />
+    <Content Include="Views\TheLoai\SuaTheLoai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\TheLoai\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BookStore_65131483.Models.THELOAI>
+
+
+@{
+    ViewBag.Title = "Quản lý thể loại";
+
+    var grid = new WebGrid(
+        source: Model,
+        rowsPerPage: 5,     // số dòng mỗi trang
+        canPage: true,      // cho phép phân trang
+        canSort: true       // cho phép sắp xếp
+    );
+    Layout = "~/Views/Shared/_LayoutAdminPage.cshtml";
+}
+<style>
+    .grid-footer {
+        width: 100%;
+        text-align: center;
+    }
+</style>
+<h3>Quản lý thể loại</h3>
+
+<a href="@Url.Action("ThemTheLoai", "TheLoai")" style="margin: 20px 0px;" class="btn btn-success">➕ Thêm thể loại</a>
+
+
+@grid.GetHtml(
+    tableStyle: "table table-bordered table-striped",
+    headerStyle: "thead-dark",
+    footerStyle: "grid-footer",
+    fillEmptyRows: true,
+    alternatingRowStyle: "alternatingRowStyle",
+    columns: new[]
+    {
+        grid.Column("STT", format: (item) => item.WebGrid.Rows.IndexOf(item) + 1 + grid.PageIndex * grid.RowsPerPage),
+        grid.Column("TenTheLoai", "Tên thể loại"),
+
+        grid.Column(
+            header: "Hành động",
+            format: item => Html.Raw(
+                $"<a class='btn btn-warning btn-sm' href='{Url.Action("SuaTheLoai", "TheLoai", new { id = item.MaTheLoai })}'>Sửa</a> " +
+                $"<a class='btn btn-danger btn-sm' href='{Url.Action("XoaTheLoai", "TheLoai", new { id = item.MaTheLoai })}' " +
+                $"onclick='return confirm(\"Xóa tài khoản này?\")'>Xóa</a>"
+                )
+
+        )
+    }
+)

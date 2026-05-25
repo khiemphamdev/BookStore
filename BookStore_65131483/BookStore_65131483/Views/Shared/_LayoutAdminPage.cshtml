@@ -37,12 +37,34 @@
             @* <h1>Tổng quan</h1>*@
             <div class="user-info">
                 <span>Chào, Admin <strong>Quản lý</strong></span>
+
             </div>
         </header>
 
 
 
-        <div class="content-box">@RenderBody()</div>
+        <div class="content-box">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Thành công!</strong> @TempData["Success"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Lỗi!</strong> @TempData["Error"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }@RenderBody()
+        </div>
+
     </div>
 </body>
 </html>
