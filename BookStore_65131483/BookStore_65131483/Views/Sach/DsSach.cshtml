@@ -72,8 +72,8 @@
         grid.Column(
             header: "Hành động",
             format: item => Html.Raw(
-                $"<a class='btn btn-warning btn-sm' href='{Url.Action("SuaSach", "Sach_65131483", new { id = item.MaSach })}'>Sửa</a> " +
-                $"<a class='btn btn-danger btn-sm' href='{Url.Action("XoaSach", "Sach_65131483", new { id = item.MaSach })}' " +
+                $"<a class='btn btn-warning btn-sm' href='{Url.Action("SuaSach", "Sach", new { id = item.MaSach })}'>Sửa</a> " +
+                $"<a class='btn btn-danger btn-sm' href='{Url.Action("XoaSach", "Sach", new { id = item.MaSach })}' " +
                 $"onclick='return confirm(\"Xóa sách này?\")'>Xóa</a>"
                 )
 

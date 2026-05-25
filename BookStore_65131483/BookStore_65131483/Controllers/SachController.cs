@@ -107,12 +107,16 @@ namespace BookStore_65131483.Controllers
             }
 
             // Đồng bộ dữ liệu cập nhật ngắn gọn
+            if (sach.TieuDe != null)
             oldSach.TieuDe = sach.TieuDe;
+            if (sach.MaTacGia != null)
             oldSach.MaTacGia = sach.MaTacGia;
+            if (sach.MaTheLoai != null)
             oldSach.MaTheLoai = sach.MaTheLoai;
             oldSach.GiaBan = sach.GiaBan;
             oldSach.SoLuongTon = sach.SoLuongTon;
             oldSach.MoTa = sach.MoTa;
+            if (sach.NgonNgu != null)
             oldSach.NgonNgu = sach.NgonNgu;
 
             db.SaveChanges();
