@@ -1,8 +1,129 @@
-﻿
+﻿@model IEnumerable<BookStore_65131483.Models.CHITIETDONHANG>
+
 @{
-    ViewBag.Title = "XemCTDH";
+    ViewBag.Title = "Chi tiết đơn hàng";
     Layout = "~/Views/Shared/_LayoutAdminPage.cshtml";
+
+    var grid = new WebGrid(
+        source: Model,
+        rowsPerPage: 5,
+        canPage: true,
+        canSort: false
+    );
 }
 
-<h2>XemCTDH</h2>
+<h2>Chi tiết đơn hàng</h2>
 
+<style>
+    .grid-footer {
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+    }
+    /* Canh giữa toàn bộ bảng */
+    .table {
+        width: 60%; /* thu nhỏ bảng */
+        margin: 30px auto; /* căn giữa ngang */
+        text-align: center; /* căn giữa nội dung */
+        vertical-align: middle;
+    }
+
+        /* Canh giữa header */
+        .table th {
+            text-align: center;
+            vertical-align: middle;
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        /* Canh giữa dữ liệu */
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* Ảnh nằm giữa */
+        .table img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Input số lượng gọn lại */
+        .table input.qty {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Nút xóa */
+        .table .btn {
+            margin: 0 auto;
+        }
+
+    /* Footer WebGrid */
+    .grid-footer {
+        text-align: center;
+    }
+
+    /* Tổng tiền căn phải nhưng vẫn nằm gọn */
+    #tongTien {
+        font-weight: bold;
+        color: #dc3545;
+    }
+</style>
+<div style="width:80%; margin: 0 auto 20px; text-align:left;">
+    <a href="@Url.Action("OrderList", "TrangAdmin_65131483")" class="btn btn-secondary">
+        ← Quay lại
+    </a>
+</div>
+@grid.GetHtml(
+    tableStyle: "table table-bordered table-striped",
+    headerStyle: "thead-dark",
+    footerStyle: "grid-footer",
+    columns: new[]
+    {
+        // Ảnh
+        grid.Column(
+
+            format: item => Html.Raw(
+                $"<img src='{item.SACH.AnhBia}' width='60' />"
+            )
+        ),
+
+        // Tên sách
+        grid.Column(
+            header: "Tên sách",
+
+            format: item => item.SACH.TieuDe
+        ),
+
+        // Đơn giá
+        grid.Column(
+            header: "Đơn giá",
+            format: item => string.Format("{0:N0}", item.DonGia)
+        ),
+
+        // Số lượng
+        grid.Column(
+            header: "Số lượng",
+            format: item => item.SoLuong
+        ),
+
+        // Thành tiền
+        grid.Column(
+            header: "Thành tiền",
+            format: item => string.Format("{0:N0}", item.SoLuong * item.DonGia)
+        ),
+
+        // Thao tác
+
+    }
+)
+
+<hr />
+
+<div style="text-align:right; font-size:18px">
+    <strong>Tổng tiền: </strong>
+    <span id="tongTien">
+        @Model.Sum(x => x.SoLuong * x.DonGia).ToString("N0")
+    </span> đ
+</div>
