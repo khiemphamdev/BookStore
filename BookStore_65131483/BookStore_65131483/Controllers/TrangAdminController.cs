@@ -97,5 +97,57 @@ namespace BookStore_65131483.Controllers
             return RedirectToAction("UserList");
         }
 
+        // ================== QUẢN LÝ ĐƠN HÀNG ==================
+        public ActionResult OrderList()
+        {
+            var donHangs = db.DONHANGs
+                             .Include(d => d.TAIKHOAN)
+                             .Where(d => d.TrangThai != "TrongGioHang")
+                             .ToList()
+                             .OrderByDescending(d => d.NgayDat);
+
+            return View(donHangs);
+        }
+
+        public ActionResult CapNhatTrangThai(int maDH, int trangThai)
+        {
+            var donHang = db.DONHANGs.FirstOrDefault(d => d.MaDH == maDH);
+
+            if (donHang == null)
+            {
+                TempData["Message"] = "Không tìm thấy đơn hàng!";
+                return RedirectToAction("OrderList");
+            }
+
+            switch (trangThai)
+            {
+                case 1:
+                    donHang.TrangThai = "DaHuy";
+                    break;
+                case 2:
+                    donHang.TrangThai = "DangVanChuyen";
+                    break;
+                case 3:
+                    donHang.TrangThai = "HoanThanh";
+                    break;
+                default:
+                    TempData["Message"] = "Trạng thái không hợp lệ!";
+                    return RedirectToAction("OrderList");
+            }
+
+            db.SaveChanges();
+            TempData["Message"] = "Cập nhật trạng thái đơn hàng thành công!";
+            return RedirectToAction("OrderList");
+        }
+
+        public ActionResult XemCTDH(int maDH)
+        {
+            var chiTietDonHangs = db.CHITIETDONHANGs
+                                     .Where(d => d.MaDH == maDH)
+                                     .ToList();
+
+            return View(chiTietDonHangs);
+        }
+
     }
 }
