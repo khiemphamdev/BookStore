@@ -273,12 +273,13 @@
     <Content Include="Views\TrangAdmin\EditUser.cshtml" />
     <Content Include="Views\TrangAdmin\OrderList.cshtml" />
     <Content Include="Views\TrangAdmin\XemCTDH.cshtml" />
+    <Content Include="Views\TaiKhoan\Register.cshtml" />
+    <Content Include="Views\TaiKhoan\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="Views\TacGia\" />
-    <Folder Include="Views\TaiKhoan\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

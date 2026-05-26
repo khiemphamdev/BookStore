@@ -14,13 +14,6 @@ namespace BookStore_65131483.Models
     
     public partial class CHITIETDONHANG
     {
-        public CHITIETDONHANG() { } 
-        public CHITIETDONHANG(int madh,int maSach, int sl, decimal dg) { 
-            this.MaSach = maSach;
-            this.MaDH = madh;
-            this.SoLuong = sl;
-            this.DonGia = dg;
-        }
         public int MaCTDH { get; set; }
         public int MaDH { get; set; }
         public int MaSach { get; set; }

@@ -1,0 +1,156 @@
+﻿@model BookStore_65131483.Models.TAIKHOAN
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+}
+
+<style>
+    .register-container {
+        height: calc(100vh - 66px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: calc(20px + 1vh);
+    }
+
+    .register-box {
+        background: white;
+        padding: calc(30px + 1vw);
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        width: calc(100% - 40px);
+        max-width: 500px;
+    }
+
+        .register-box h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: calc(20px + 1vh);
+            font-size: calc(20px + 0.5vw);
+        }
+
+    .form-group {
+        margin-bottom: calc(12px + 0.5vh);
+    }
+
+        .form-group label {
+            display: block;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 5px;
+            font-size: calc(13px + 0.1vw);
+        }
+
+    .form-control {
+        width: 100%;
+        padding: calc(10px + 0.3vh);
+        border: 2px solid #ddd;
+        border-radius: calc(6px + 0.2vw);
+        font-size: calc(13px + 0.1vw);
+        box-sizing: border-box;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+    .text-danger {
+        color: #e74c3c;
+        font-size: calc(11px + 0.1vw);
+        margin-top: 3px;
+        display: block;
+    }
+
+    .btn-register {
+        width: 100%;
+        padding: calc(12px + 0.5vh);
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        border-radius: calc(6px + 0.2vw);
+        font-size: calc(14px + 0.2vw);
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: calc(10px + 0.5vh);
+    }
+
+        .btn-register:hover {
+            opacity: 0.9;
+        }
+
+    .error-msg {
+        background: #fee;
+        color: #c33;
+        padding: calc(8px + 0.3vh);
+        border-radius: 5px;
+        margin-top: calc(10px + 0.5vh);
+        text-align: center;
+        font-size: calc(12px + 0.1vw);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: calc(15px + 1vh);
+        font-size: calc(13px + 0.1vw);
+        color: #666;
+    }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .login-link a:hover {
+                text-decoration: underline;
+            }
+</style>
+
+<div class="register-container">
+    <div class="register-box">
+        <h2>Đăng ký tài khoản</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenDangNhap, "Tên đăng nhập")
+                @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập tên đăng nhập", required = "required" } })
+                @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, "Email")
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập email" }, required = "required" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MatKhau, "Mật khẩu")
+                @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control", placeholder = "Nhập mật khẩu", required = "required" })
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+            </div>
+
+
+
+
+            <button type="submit" class="btn-register">Đăng ký</button>
+
+
+            <p class="">@ViewBag.error</p>
+
+        }
+
+        <div class="login-link">
+            Đã có tài khoản? <a href="@Url.Action("Login", "TaiKhoan_65131483")">Đăng nhập ngay</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
