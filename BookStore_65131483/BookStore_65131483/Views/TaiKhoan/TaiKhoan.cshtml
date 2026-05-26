@@ -1,0 +1,44 @@
+﻿@model BookStore_65131483.Models.TAIKHOAN
+
+
+@{
+    ViewBag.Title = "TaiKhoan";
+    Layout = "~/Views/Shared/_LayoutAccountPage.cshtml";
+}
+
+
+
+<style></style>
+<main class="user-main-content">
+
+    <h2 class="section-title">Hồ sơ cá nhân</h2>
+
+    <form method="post" action="@Url.Action("TaiKhoan", "TaiKhoan_65131483")" class="profile-form">
+        <div class="form-group">
+            <label>Họ và tên</label>
+            <input type="text" value="@Model.HoTen" name="HoTen" />
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="tel" value="@Model.SDT" name="SDT" />
+        </div>
+        <div class="form-group full-width">
+            <label>Địa chỉ Email</label>
+            <input type="email"
+                   value="@Model.Email"
+                   disabled
+                   style="background: #f9f9f9; cursor: not-allowed" name="Email" />
+        </div>
+        <div class="form-group full-width">
+            <label>Địa chỉ</label>
+            <input type="text" value="@Model.DiaChi" name="DiaChi" />
+        </div>
+
+        <div class="form-group full-width">
+            <button type="submit" class="btn-save">Lưu thay đổi</button>
+        </div>
+    </form>
+
+
+
+</main>
