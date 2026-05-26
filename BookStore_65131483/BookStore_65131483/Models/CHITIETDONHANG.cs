@@ -22,5 +22,15 @@ namespace BookStore_65131483.Models
     
         public virtual DONHANG DONHANG { get; set; }
         public virtual SACH SACH { get; set; }
+
+        public CHITIETDONHANG ( int maDH, int maSach, int soLuong, decimal donGia)
+        {
+           
+            MaDH = maDH;
+            MaSach = maSach;
+            SoLuong = soLuong;
+            DonGia = donGia;
+         
+        }
     }
 }
