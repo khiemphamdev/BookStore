@@ -176,7 +176,28 @@ namespace BookStore_65131483.Controllers
             db.SaveChanges();
             return RedirectToAction("DonHang", "TaiKhoan_65131483");
         }
-        
 
+        public ActionResult CommentCuaToi()
+        {
+            var maTK = GetMaTK();
+            if (maTK == null)
+                return RedirectToAction("Login", "TaiKhoan_65131483");
+
+            var comments = db.DANHGIAs
+                .Include(c => c.SACH)
+                .Where(c => c.MaTK == maTK)
+                .OrderByDescending(c => c.NgayDanhGia)
+                .ToList();
+
+            return View(comments);
+        }
+
+        public ActionResult XoaComment(int id)
+        {
+            var cmt = db.DANHGIAs.Find(id);
+            db.DANHGIAs.Remove(cmt);
+            db.SaveChanges();
+            return RedirectToAction("CommentCuaToi");
+        }
     }
 }
