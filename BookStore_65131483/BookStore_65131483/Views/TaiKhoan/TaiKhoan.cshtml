@@ -8,7 +8,121 @@
 
 
 
-<style></style>
+<style>
+    /* ===== HỒ SƠ CÁ NHÂN CHUNG ===== */
+.user-main-content {
+    padding: 10px 5px;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 24px;
+    position: relative;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+/* Tạo một đường gạch ngắn màu xanh dưới tiêu đề để làm điểm nhấn */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: #0284c7;
+}
+
+/* ===== CẤU TRÚC FORM ===== */
+.profile-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Khoảng cách giữa các ô input */
+}
+
+/* Mặc định mỗi ô chiếm 50% chiều rộng trừ đi khoảng cách gap */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: calc(50% - 10px);
+}
+
+/* Các ô cần chiếm trọn 100% chiều rộng như Email, Địa chỉ, Nút bấm */
+.form-group.full-width {
+    width: 100%;
+}
+
+/* ===== LABEL & INPUT ===== */
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #334155;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hiệu ứng khi click vào ô input */
+.form-group input:focus {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    background-color: #fff;
+}
+
+/* Trạng thái input bị khóa (Email) */
+.form-group input:disabled {
+    background-color: #f8fafc !important;
+    border-color: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* ===== NÚT BẤM (BUTTON) ===== */
+.btn-save {
+    background-color: #0284c7;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    width: fit-content; /* Nút vừa vặn với chữ, không bị dài quá */
+    margin-top: 10px;
+}
+
+.btn-save:hover {
+    background-color: #0369a1;
+    box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2), 0 2px 4px -1px rgba(2, 132, 199, 0.1);
+    transform: translateY(-1px);
+}
+
+.btn-save:active {
+    transform: translateY(0);
+}
+
+
+
+    .btn-save {
+        width: 100%; /* Nút bấm kéo dài hết màn hình trên điện thoại */
+        text-align: center;
+    }
+}
+</style>
 <main class="user-main-content">
 
     <h2 class="section-title">Hồ sơ cá nhân</h2>

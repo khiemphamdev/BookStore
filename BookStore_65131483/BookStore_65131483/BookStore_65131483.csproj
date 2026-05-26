@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Account.css" />
+    <Content Include="Content\AccountPage.css" />
     <Content Include="Content\AdminPage.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -201,13 +202,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\ChiTietSach.css" />
-    <Content Include="Content\GioHang.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\StyleAdminPage.css" />
     <Content Include="Content\StyleSheet1.css" />
-    <Content Include="Content\ThanhToan.css" />
-    <Content Include="Content\TimKiem.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

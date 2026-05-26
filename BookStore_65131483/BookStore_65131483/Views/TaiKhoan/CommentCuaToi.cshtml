@@ -1,8 +1,158 @@
-﻿
+﻿@model IEnumerable<BookStore_65131483.Models.DANHGIA>
+
 @{
     ViewBag.Title = "CommentCuaToi";
-    Layout = "~/Views/Shared/_LayoutAdminPage.cshtml";
+    Layout = "~/Views/Shared/_LayoutAccountPage.cshtml";
+    var grid = new WebGrid(
+    source: Model,
+    rowsPerPage: 8,     // số dòng mỗi trang
+    canPage: true,      // cho phép phân trang
+    canSort: true       // cho phép sắp xếp
+);
 }
 
-<h2>CommentCuaToi</h2>
+<style>
+    /* Tùy chỉnh bảng chung */
+    .grid-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px; /* Tạo khoảng cách giữa các dòng */
+        background: transparent !important;
+        border: none !important;
+    }
 
+        .grid-table thead th {
+            background-color: #f8f9fa !important;
+            color: #495057;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 15px;
+            border: none !important;
+        }
+
+        .grid-table tbody tr {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        /*            .grid-table tbody tr:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }*/
+
+        .grid-table td {
+            padding: 15px !important;
+            vertical-align: middle !important;
+            border: none !important;
+        }
+
+    /* Định dạng nội dung ô */
+    .order-id {
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .order-price {
+        font-weight: 700;
+        color: #e67e22;
+    }
+
+    /* Trạng thái Badge */
+    .badge-status {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .status-pending {
+        background: #fff7ed;
+        color: #c2410c;
+    }
+
+    .status-success {
+        background: #f0fdf4;
+        color: #15803d;
+    }
+
+    .status-danger {
+        background: #fef2f2;
+        color: #991b1b;
+    }
+
+    /* Nút thao tác */
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .btn-action {
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: 0.2s;
+    }
+
+    .btn-view {
+        background: #f1f5f9;
+        color: #475569;
+    }
+
+        .btn-view:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+    .btn-cancel {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+        .btn-cancel:hover {
+            background: #fecaca;
+        }
+
+    .btn-rate {
+        background: #fef9c3;
+        color: #a16207;
+    }
+
+        .btn-rate:hover {
+            background: #fef08a;
+        }
+
+    .grid-footer {
+        text-align: center
+    }
+</style>
+
+@grid.GetHtml(
+    tableStyle: "table grid-table",
+    footerStyle: "grid-footer",
+    fillEmptyRows: false,
+    alternatingRowStyle: "alternatingRowStyle",
+    columns: new[]
+    {
+        //grid.Column("STT", style: "col-stt", format: (item) => item.WebGrid.Rows.IndexOf(item) + 1 + grid.PageIndex * grid.RowsPerPage),
+
+        grid.Column(header: "Mã", format: @<text><span class="order-id">#@item.MaDH</span></text>),
+
+grid.Column("Tên sách", format: (item) => item.SACH.TieuDe),
+grid.Column("Điểm", format: (item) => item.Diem),
+
+grid.Column("Bình luận", format: (item) => item.BinhLuan),
+
+
+grid.Column("", format: (item) => item.NgayDanhGia?.ToString("dd/MM/yyyy")),
+
+}
+)
