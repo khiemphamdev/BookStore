@@ -284,6 +284,7 @@
     <Content Include="Views\Shared\_LayoutAccountPage.cshtml" />
     <Content Include="Views\TimKiem\TimKiem.cshtml" />
     <Content Include="Views\DanhGia\DanhGia.cshtml" />
+    <Content Include="Views\ChiTietSach_65131483\ChiTietSach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

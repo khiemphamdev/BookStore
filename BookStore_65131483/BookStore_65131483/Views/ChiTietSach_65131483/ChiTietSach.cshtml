@@ -1,0 +1,306 @@
+﻿@model BookStore_65131483.Models.SACH
+
+@{
+    ViewBag.Title = Model.TieuDe;
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    double diemTB = 0;
+    int fiveStars = 0;
+    int fourStars = 0;
+    int threeStars = 0;
+    int twoStars = 0;
+    int oneStar = 0;
+
+    if (Model.DANHGIAs.Any())
+    {
+        foreach (var danhGia in Model.DANHGIAs)
+        {
+            switch (danhGia.Diem)
+            {
+                case 5:
+                    fiveStars++;
+                    break;
+                case 4:
+                    fourStars++;
+                    break;
+                case 3:
+                    threeStars++;
+                    break;
+                case 2:
+                    twoStars++;
+                    break;
+                case 1:
+                    oneStar++;
+                    break;
+            }
+
+            diemTB += danhGia.Diem;
+        }
+        diemTB /= Model.DANHGIAs.Count();
+        diemTB = Math.Round(diemTB, 1);
+    }
+    int totalReviews = Model.DANHGIAs.Count();
+
+    double fiveStarPercent = totalReviews == 0 ? 0 : Math.Round((double)fiveStars / totalReviews * 100, 1);
+    double fourStarPercent = totalReviews == 0 ? 0 : Math.Round((double)fourStars / totalReviews * 100, 1);
+    double threeStarPercent = totalReviews == 0 ? 0 : Math.Round((double)threeStars / totalReviews * 100, 1);
+    double twoStarPercent = totalReviews == 0 ? 0 : Math.Round((double)twoStars / totalReviews * 100, 1);
+    double oneStarPercent = totalReviews == 0 ? 0 : Math.Round((double)oneStar / totalReviews * 100, 1);
+
+    int fullStars = (int)Math.Floor(diemTB);          // số sao đầy
+    bool halfStar = (diemTB - fullStars) >= 0.5;      // có nửa sao hay không
+    int emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+}
+<link href="~/Content/ChiTietSach.css" rel="stylesheet" />
+<!-- Breadcrumb -->
+<div class="container breadcrumb">
+    <a href="index.html">Trang chủ</a> <span>/</span>
+    <a href="#">Sách Văn Học</a> <span>/</span>
+    <span style="color: var(--primary-color)">Nhà Giả Kim</span>
+</div>
+
+<!-- Book Detail -->
+<div class="container product-wrapper">
+    <div class="product-gallery">
+        <div class="main-image">
+            <img src="@Model.AnhBia"
+                 alt="Nhà giả kim" />
+        </div>
+    </div>
+
+    <div class="product-info">
+        <h1 class="product-title">@Model.TieuDe</h1>
+
+        <div class="product-meta">
+            <span>Tác giả: <strong>@Model.TACGIA.TenTacGia</strong></span>
+            <span><i class="fas fa-star"></i> @diemTB (@Model.DaBan đánh giá)</span>
+        </div>
+
+        <div class="product-price">
+            <span class="current-price">@Model.GiaBan.ToString("N0") đ</span>
+
+        </div>
+
+        @*<table class="info-table">
+                <tr>
+                    <td>Nhà xuất bản:</td>
+                    <td>NXB Văn Học</td>
+                </tr>
+                <tr>
+                    <td>Hình thức:</td>
+                    <td>Bìa mềm</td>
+                </tr>
+                <tr>
+                    <td>Số trang:</td>
+                    <td>228 trang</td>
+                </tr>
+                <tr>
+                    <td>Kích thước:</td>
+                    <td>13 x 20.5 cm</td>
+                </tr>
+            </table>*@
+
+
+
+        <div class="action-area">
+            <div class="quantity-selector">
+                <button class="qty-btn" onclick="decreaseQty()">-</button>
+                <input type="text" class="qty-input" id="qty" value="1" readonly />
+                <button class="qty-btn" onclick="increaseQty()">+</button>
+            </div>
+
+            <a class="btn-buy btn-secondary btn-add-cart" data-id="@Model.MaSach" data-gia="@Model.GiaBan">
+                <i class="fas fa-cart-plus" style="margin-right: 8px"></i> Thêm vào
+                giỏ
+            </a>
+            <a href="#" class="btn-buy btn-primary">Mua Ngay</a>
+        </div>
+
+        <div style="
+            margin-top: 25px;
+            padding: 15px;
+            background: #f2fdfd;
+            border: 1px dashed #1abc9c;
+            border-radius: 5px;
+            font-size: 14px;
+          ">
+            @*<p>
+                    <i class="fas fa-truck"
+                       style="color: #1abc9c; margin-right: 5px"></i>
+                    Freeship cho đơn từ 250k
+                </p>*@
+            <p style="margin-top: 5px">
+                <i class="fas fa-check-circle"
+                   style="color: #1abc9c; margin-right: 5px"></i>
+                Đổi trả miễn phí trong 30 ngày
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container product-description" id="desc">
+    <h2 class="desc-heading">Mô Tả Sản Phẩm</h2>
+    <div class="desc-content">
+
+        <p>@Model.MoTa</p>
+    </div>
+</div>
+
+<div class="container product-reviews">
+    <div class="review-header">
+        <h2 class="desc-heading" style="border: none; margin: 0; padding: 0">
+            Đánh giá khách hàng
+        </h2>
+        <button class="btn-write-review">
+            <i class="far fa-edit"></i> Viết đánh giá
+        </button>
+    </div>
+
+    <div class="review-summary">
+        <div class="rating-average">
+            <h2>@diemTB</h2>
+            <div class="stars">
+                @for (int i = 0; i < fullStars; i++)
+                {
+                    <i class="fas fa-star"></i>
+                }
+
+                <!-- In nửa sao nếu có -->
+                @if (halfStar)
+                {
+                    <i class="fas fa-star-half-alt"></i>
+                }
+
+                <!-- In sao trống -->
+                @for (int i = 0; i < emptyStars; i++)
+                {
+                    <i class="far fa-star"></i>
+                }
+
+
+            </div>
+            <p style="color: #888; font-size: 14px">( nhận xét)</p>
+        </div>
+
+        <div class="rating-bars">
+            <div class="bar-item">
+                <span>5 sao</span>
+                <div class="bar-outer">
+                    <div class="bar-inner" style="width: @fiveStarPercent%"></div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <span>4 sao</span>
+                <div class="bar-outer">
+                    <div class="bar-inner" style="width: @fourStarPercent%"></div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <span>3 sao</span>
+                <div class="bar-outer">
+                    <div class="bar-inner" style="width: @threeStarPercent%"></div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <span>2 sao</span>
+                <div class="bar-outer">
+                    <div class="bar-inner" style="width: @twoStarPercent%"></div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <span>1 sao</span>
+                <div class="bar-outer">
+                    <div class="bar-inner" style="width: @oneStarPercent%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="review-list">
+        @if (Model.DANHGIAs != null && Model.DANHGIAs.Any())
+        {
+            foreach (var dg in Model.DANHGIAs.OrderByDescending(d => d.NgayDanhGia))
+            {
+                <div class="review-item">
+                    <div class="review-user">
+                        <div class="user-avatar" style="background: #e67e22">H</div>
+                        <div class="user-info">
+                            <h4>@dg.TAIKHOAN.HoTen</h4>
+                            <div class="stars" style="color: #f1c40f; font-size: 12px">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= dg.Diem)
+                                    {<i class="fas fa-star"></i>}
+
+                                }
+                            </div>
+                        </div>
+                        <span class="review-date">@dg.NgayDanhGia </span>
+                    </div>
+                    <p class="review-content">
+                        @dg.BinhLuan
+                    </p>
+                </div>
+            }
+        }
+    </div>
+
+
+</div>
+
+
+
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Quantity Control
+        function increaseQty() {
+            var input = document.getElementById("qty");
+            var value = parseInt(input.value);
+            input.value = value + 1;
+        }
+
+        function decreaseQty() {
+            var input = document.getElementById("qty");
+            var value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        }
+
+
+        // Buy Now
+        document.querySelector(".btn-buy-now").addEventListener("click", () => {
+            alert("Chức năng mua hàng đang được phát triển!");
+        });
+    </script>
+    <script>
+$(document).ready(function(){
+    $(".btn-add-cart").click(function(){
+
+        var maSach = $(this).data("id");
+        var donGia = $(this).data("gia");
+        var soLuong = $("#qty").val();
+
+
+        $.ajax({
+            url: '@Url.Action("ThemGioHang", "DonHang_65131483")',
+            type: 'POST',
+            data: { maSach: maSach, soLuong: soLuong, donGia: donGia, __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() },
+            success: function(res){
+                if(res.success){
+
+
+                    alert("Đã thêm vào giỏ hàng")
+                } else {
+                    alert(res.message);
+                }
+            },
+            error: function(xhr, status, error){
+                console.log("Lỗi Ajax:", error);
+            }
+        });
+    });
+});
+    </script>
+}
