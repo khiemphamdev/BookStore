@@ -31,7 +31,7 @@ namespace BookStore_65131483.Controllers
             int? maTK = Session["MaTK"] as int?;
             if (maTK == null)
             {
-                return RedirectToAction("Login", "TaiKhoan_65131483");
+                return RedirectToAction("Login", "TaiKhoan");
             }
 
             var gioHang = LayGioHang();
@@ -113,7 +113,7 @@ namespace BookStore_65131483.Controllers
             int? maTK = Session["MaTK"] as int?;
             if (maTK == null)
             {
-                return RedirectToAction("Login", "TaiKhoan_65131483");
+                return RedirectToAction("Login", "TaiKhoan");
             }
 
             var gioHang = LayGioHang();
@@ -133,7 +133,7 @@ namespace BookStore_65131483.Controllers
             if (maTK == null)
             {
                 // Đồng nhất điều hướng về TaiKhoan_65131483 thay vì "Account" cũ
-                return RedirectToAction("Login", "TaiKhoan_65131483");
+                return RedirectToAction("Login", "TaiKhoan");
             }
 
             var donHang = db.DONHANGs.FirstOrDefault(d => d.MaTK == maTK && d.TrangThai == "TrongGioHang");
@@ -147,7 +147,7 @@ namespace BookStore_65131483.Controllers
             {
                 if (ct.SACH == null || ct.SACH.SoLuongTon < ct.SoLuong)
                 {
-                    return Json(new { success = false, message = $"Sách '{ct.SACH?.TenSach}' không đủ số lượng trong kho!" });
+                    return Json(new { success = false, message = $"Sách '{ct.SACH?.TieuDe}' không đủ số lượng trong kho!" });
                 }
             }
 

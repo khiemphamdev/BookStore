@@ -1,0 +1,92 @@
+﻿@model  IPagedList<BookStore_65131483.Models.SACH>
+
+@{
+    ViewBag.Title = "TimKiem";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@using PagedList.Mvc
+@using PagedList
+<link href="~/Content/TimKiem.css" rel="stylesheet" />
+
+
+<div class="container">
+
+
+    <main class="main-content">
+        <form method="get" action="@Url.Action("TimKiem","TimKiem")" class="search-box">
+            <input type="text" name="keyword" placeholder="Tìm tên sách, tác giả..."
+                   value="@Request.QueryString["keyword"]" />
+            <button type="submit">Tìm kiếm</button>
+        </form>
+
+
+        <div class="book-grid">
+            @if (Model == null || !Model.Any())
+            {
+                <p>Không tìm thấy kết quả</p>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div class="book-card">
+                        <a href="@Url.Action("ChiTietSach", "ChiTietSach_65131483", new { id = item.MaSach })">
+                            <div class="book-thumb">
+                                <img src="@item.AnhBia" alt="@item.TieuDe" />
+                            </div>
+                        </a>
+                        <div class="book-info">
+                            <h3>
+                                <a href="@Url.Action("ChiTietSach", "ChiTietSach_65131483", new { id = item.MaSach })">
+                                    @item.TieuDe
+                                </a>
+                            </h3>
+                            <p class="book-author">@item.TACGIA.TenTacGia</p>
+                            <div class="book-price">@item.GiaBan.ToString("N0") đ</div>
+                            <a class="btn btn-add add-to-cart" data-id="@item.MaSach" data-gia="@item.GiaBan"><i class="fas fa-cart-plus"></i> Thêm vào giỏ</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <!-- PHÂN TRANG -->
+        <div class="pagination-container">
+            @Html.PagedListPager(Model, page => Url.Action("TimKiem", new { page, keyword = Request.QueryString["keyword"] }))
+        </div>
+
+
+    </main>
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+$(document).ready(function(){
+    $(".add-to-cart").click(function(){
+
+        console.log("da bam vao");
+        var maSach = $(this).data("id");
+        var donGia = $(this).data("gia");
+
+        $.ajax({
+            url: '@Url.Action("ThemGioHang", "DonHang_65131483")',
+            type: 'POST',
+            data: { maSach: maSach, soLuong: 1, donGia: donGia },
+            success: function(res){
+                if(res.success){
+
+
+                    alert("Đã thêm vào giỏ hàng")
+                } else {
+                    alert(res.message);
+                }
+            },
+            error: function(xhr, status, error){
+                console.log("Lỗi Ajax:", error);
+            }
+        });
+    });
+});
+    </script>
+}

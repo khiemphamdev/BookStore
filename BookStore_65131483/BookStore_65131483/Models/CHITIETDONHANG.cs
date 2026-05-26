@@ -11,7 +11,8 @@ namespace BookStore_65131483.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc.Html;
+
     public partial class CHITIETDONHANG
     {
         public int MaCTDH { get; set; }
@@ -32,5 +33,6 @@ namespace BookStore_65131483.Models
             DonGia = donGia;
          
         }
+        public CHITIETDONHANG () { }
     }
 }

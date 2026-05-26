@@ -136,12 +136,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ChiTietSachController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Controllers\TacGiaController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TheLoaiController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\TrangAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -207,6 +209,7 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\StyleAdminPage.css" />
     <Content Include="Content\StyleSheet1.css" />
+    <Content Include="Content\TimKiem.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -279,11 +282,13 @@
     <Content Include="Views\TaiKhoan\ChiTietDonHang.cshtml" />
     <Content Include="Views\TaiKhoan\CommentCuaToi.cshtml" />
     <Content Include="Views\Shared\_LayoutAccountPage.cshtml" />
+    <Content Include="Views\TimKiem\TimKiem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="Views\ChiTietSach\" />
+    <Folder Include="Views\Default\" />
     <Folder Include="Views\DonHang\" />
     <Folder Include="Views\TacGia\" />
   </ItemGroup>
