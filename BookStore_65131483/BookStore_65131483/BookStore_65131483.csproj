@@ -285,13 +285,13 @@
     <Content Include="Views\TimKiem\TimKiem.cshtml" />
     <Content Include="Views\DanhGia\DanhGia.cshtml" />
     <Content Include="Views\ChiTietSach_65131483\ChiTietSach.cshtml" />
+    <Content Include="Views\DonHang\ThanhToan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="Views\ChiTietSach\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\DonHang\" />
     <Folder Include="Views\TacGia\" />
   </ItemGroup>
   <ItemGroup>

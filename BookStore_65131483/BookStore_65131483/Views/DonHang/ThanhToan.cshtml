@@ -1,0 +1,368 @@
+﻿
+@model BookStore_65131483.Models.DONHANG
+@{
+    ViewBag.Title = "Thanh toán";
+    Layout = null;
+    var tongTien = Model?.CHITIETDONHANGs?
+    .Sum(ct => ct.SoLuong * ct.DonGia) ?? 0;
+
+}
+<link href="~/Content/ThanhToan.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh toán - ZenBooks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --bg-color: #f4f7f6;
+            --white: #ffffff;
+            --border-color: #dddddd;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .checkout-box {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* Form styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        /* Payment Method */
+        .payment-options {
+            margin-top: 10px;
+        }
+
+        .payment-item {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+            .payment-item:hover {
+                border-color: var(--accent-color);
+                background: #fffcf9;
+            }
+
+            .payment-item input {
+                width: auto;
+            }
+
+            .payment-item i {
+                font-size: 20px;
+                color: var(--primary-color);
+                width: 25px;
+            }
+
+        /* Order Summary Card */
+        .order-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            position: sticky;
+            top: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .product-mini-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+            .product-mini-item img {
+                width: 50px;
+                height: 70px;
+                object-fit: cover;
+                border-radius: 4px;
+            }
+
+        .product-mini-info h4 {
+            font-size: 14px;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-mini-info p {
+            font-size: 12px;
+            color: #888;
+            margin: 5px 0;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .total-line {
+            border-top: 2px solid #eee;
+            pt: 15px;
+            margin-top: 15px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent-color);
+        }
+
+        .btn-confirm {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+            .btn-confirm:hover {
+                background: #1a252f;
+            }
+
+        .back-to-cart {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <a href="@Url.Action("Index", "Home")" class="logo">ZenBooks</a>
+        </div>
+
+        <div class="checkout-layout">
+            <div class="checkout-forms" style="position: sticky; top: 100px ">
+                <div class="checkout-box">
+                    <h2><i class="fas fa-truck"></i> Thông tin giao hàng</h2>
+                    <div class="form-group">
+                        <label>Họ và tên</label>
+                        <input type="text" placeholder="Nguyễn Văn A" value="@Model.TAIKHOAN.HoTen" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="email@example.com" value="@Model.TAIKHOAN.Email" />
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            <input type="tel" placeholder="0901 xxx xxx" value="@Model.TAIKHOAN.SDT" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ nhận hàng</label>
+                        <input type="text"
+                               placeholder="Số nhà, tên đường, phường/xã..." value="@Model.TAIKHOAN.DiaChi" id="DiaChi" />
+                    </div>
+                    <div class="form">
+                        @*<div class="form-group">
+                                <label>Tỉnh / Thành phố</label>
+                                <select>
+                                    <option>Chọn TP</option>
+                                    <option>Hà Nội</option>
+                                    <option>TP. Hồ Chí Minh</option>
+                                    <option>Đà Nẵng</option>
+                                </select>
+                            </div>*@
+                        <div class="form-group">
+                            <label>Ghi chú đơn hàng (tùy chọn)</label>
+                            <input type="text" placeholder="Ví dụ: Giao giờ hành chính" id="GhiChu" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-box">
+                    <h2><i class="fas fa-credit-card"></i> Phương thức thanh toán</h2>
+                    <div class="payment-options">
+                        <label class="payment-item">
+                            <input type="radio" name="pay" checked />
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Thanh toán khi nhận hàng (COD)</span>
+                        </label>
+                        @*<label class="payment-item">
+                                <input type="radio" name="pay" />
+                                <i class="fas fa-university"></i>
+                                <span>Chuyển khoản ngân hàng</span>
+                            </label>
+                            <label class="payment-item">
+                                <input type="radio" name="pay" />
+                                <i class="fab fa-paypal"></i>
+                                <span>Ví điện tử (Momo / ZaloPay)</span>
+                            </label>*@
+                    </div>
+                </div>
+            </div>
+
+            <aside class="order-card">
+                <h3 style="margin-bottom: 20px">Đơn hàng của bạn (3)</h3>
+
+
+
+
+                @foreach (var dh in Model.CHITIETDONHANGs.Reverse())
+                {
+                    <div class="product-mini-item">
+                        <img src="@dh.SACH.AnhBia"
+                             alt="Book" />
+                        <div class="product-mini-info">
+                            <h4>@dh.SACH.TieuDe</h4>
+                            <p>SL: @dh.SoLuong x @dh.DonGia</p>
+                        </div>
+                    </div>
+                }
+
+
+                <div style="margin-top: 20px">
+                    <div class="summary-line">
+                        <span>Tạm tính</span>
+                        <span>@tongTien.ToString("N0") đ</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Phí vận chuyển</span>
+                        <span style="color: #27ae60">Miễn phí</span>
+                    </div>
+                    <div class="summary-line total-line" style="padding-top: 10px;">
+                        <span>TỔNG CỘNG</span>
+                        <span>@tongTien.ToString("N0") đ</span>
+                    </div>
+                </div>
+
+                <button class="btn-confirm" onclick="ThanhToan()">XÁC NHẬN ĐẶT HÀNG</button>
+                <a href="@Url.Action("XemGioHang", "DonHang_65131483")" class="back-to-cart"><i class="fas fa-arrow-left"></i> Quay lại giỏ hàng</a>
+            </aside>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+    function ThanhToan() {
+        const diaChi = document.getElementById("DiaChi").value;
+        const ghiChu = document.getElementById("GhiChu").value;
+        const token = $('input[name="__RequestVerificationToken"]').val();
+
+        $.ajax({
+            url: '@Url.Action("DatHang", "DonHang_65131483")',
+            type: 'POST',
+            data: {
+                DiaChi: diaChi,
+                GhiChu: ghiChu,
+
+            },
+
+
+            success: function (res) {
+                if (res.success) {
+                    window.location.href = '@Url.Action("Index", "Home")';
+
+                } else {
+
+                    alert(res.message || "Có lỗi xảy ra");
+                }
+            }
+
+        });
+    }
+    </script>
+
+</body>
+</html>
+
+
