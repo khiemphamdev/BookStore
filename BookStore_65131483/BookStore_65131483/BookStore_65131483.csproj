@@ -136,7 +136,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ChiTietSachController.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\DanhGiaController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SachController.cs" />
@@ -283,6 +283,7 @@
     <Content Include="Views\TaiKhoan\CommentCuaToi.cshtml" />
     <Content Include="Views\Shared\_LayoutAccountPage.cshtml" />
     <Content Include="Views\TimKiem\TimKiem.cshtml" />
+    <Content Include="Views\DanhGia\DanhGia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,278 @@
+﻿@model IEnumerable<BookStore_65131483.Models.CHITIETDONHANG>
+
+@{
+    var grid = new WebGrid(
+        source: Model,
+        rowsPerPage: 5,
+        canPage: true,
+        canSort: false
+    );
+    var firstItem = Model?.FirstOrDefault();
+    var maDH = firstItem != null ? firstItem.MaDH : 0;
+    Layout = "~/Views/Shared/_LayoutAccountPage.cshtml";
+
+}
+
+
+
+<style>
+    /* Tùy chỉnh bảng chung */
+    .grid-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px; /* Tạo khoảng cách giữa các dòng */
+        background: transparent !important;
+        border: none !important;
+    }
+
+        .grid-table thead th {
+            background-color: #f8f9fa !important;
+            color: #495057;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 15px;
+            border: none !important;
+        }
+
+        .grid-table tbody tr {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        /*            .grid-table tbody tr:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }*/
+
+        .grid-table td {
+            padding: 15px !important;
+            vertical-align: middle !important;
+            border: none !important;
+        }
+
+    /* Định dạng nội dung ô */
+    .order-id {
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .order-price {
+        font-weight: 700;
+        color: #e67e22;
+    }
+
+    /* Trạng thái Badge */
+    .badge-status {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .status-pending {
+        background: #fff7ed;
+        color: #c2410c;
+    }
+
+    .status-success {
+        background: #f0fdf4;
+        color: #15803d;
+    }
+
+    .status-danger {
+        background: #fef2f2;
+        color: #991b1b;
+    }
+
+    /* Nút thao tác */
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .btn-action {
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: 0.2s;
+    }
+
+    .btn-view {
+        background: #f1f5f9;
+        color: #475569;
+    }
+
+        .btn-view:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+    .btn-cancel {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+        .btn-cancel:hover {
+            background: #fecaca;
+        }
+
+    .btn-rate {
+        background: #fef9c3;
+        color: #a16207;
+    }
+
+        .btn-rate:hover {
+            background: #fef08a;
+        }
+
+    .grid-footer {
+        text-align: center
+    }
+    /* Class này sẽ áp dụng lên thẻ <td> của cột */
+    .action-column {
+        text-align: center;
+        vertical-align: middle;
+        width: 150px; /* Điều chỉnh độ rộng cột cho vừa nút */
+    }
+
+    /* CSS cho nút đã tối ưu lại */
+    .btn-rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #ffc107; /* Màu vàng sao */
+        color: #000;
+        border: 1px solid #e0a800;
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .btn-rating:hover {
+            background: #e0a800;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+</style>
+<h4 value=@maDH class="maDH" data-maDH="@maDH">Mã đơn hàng: @maDH</h4>
+
+@grid.GetHtml(
+    tableStyle: "table table-bordered table-striped",
+    headerStyle: "thead-dark",
+    columns: new[]{
+
+
+
+        grid.Column(
+
+    format: item => Html.Raw(
+        $"<img src='{item.SACH.AnhBia}' width='60' />"
+    )
+),
+        grid.Column(header:"Tên sách", format:item => item.SACH.TieuDe),
+        grid.Column(header:"Giá", format:item => $"{item.DonGia:n0}đ"),
+
+        // Cột input đánh giá (Điểm)
+       grid.Column(header:"Đánh giá", format: item =>
+            {
+                // Tạo danh sách điểm 1→5
+                var options = new List<SelectListItem>();
+                for(int i=1; i<=5; i++)
+                {
+                    options.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+                }
+
+                // Tạo dropdown, name theo MaSach để gửi form
+                return Html.DropDownList($"{item.MaSach}", options, "Chọn điểm", new { @class="form-control diem" });
+            }),
+
+        // Cột input bình luận
+        grid.Column(header:"Bình luận", format: item =>
+        {
+            return Html.TextArea($"{item.MaSach}", "", new { @class="form-control binhluan", placeholder="Nhập bình luận" });
+        }),
+
+        // Nút submit cho từng sách
+       grid.Column(
+    header: "Hành động",
+    style: "action-column", // Đưa style lên trước để dễ quản lý
+    format: @<text>
+    <button type="button" name="maSach" value="@item.MaSach" class="btn-rating luu-btn">
+
+        <span class="text">Đánh giá</span>
+    </button>
+    </text>
+)
+
+
+}
+
+)
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+
+    // Lắng nghe nút lưu đánh giá
+    $(".luu-btn").click(function(e){
+        e.preventDefault();
+        var row = $(this).closest("tr");
+        var maSach = row.find(".diem").attr("name");
+        var diem = row.find(".diem").val();
+        var binhLuan = row.find(".binhluan").val();
+        console.log(typeof maSach)
+        var maDH = document.querySelector(".maDH").dataset.madh;
+        console.log(typeof maDH);
+        console.log(typeof diem)
+        console.log(typeof binhLuan)
+        if(!diem){
+            alert("Vui lòng chọn điểm!");
+            return;
+        }
+        if (!binhLuan) {
+            alert("Vui lòng nhập bình luận!");
+            return;
+        }
+
+        $.ajax({
+            url: '@Url.Action("LuuDanhGia", "DanhGia_65131483")',
+            type: 'POST',
+            data: {
+                maSach: maSach,
+                diem: diem,
+                binhLuan: binhLuan,
+                maDH: maDH,
+                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() // nếu dùng AntiForgery
+            },
+            success: function(res){
+                if(res.success){
+                    alert("Đã lưu đánh giá!");
+
+                    location.reload();
+                    // Nếu muốn update live trên table, có thể thêm code ở đây
+                    // ví dụ row.find(".diem").val(diem); row.find(".binhluan").val(binhLuan);
+                } else {
+                    alert("Lưu thất bại!");
+                }
+            },
+            error: function(err){
+                console.error(err);
+                alert("Có lỗi xảy ra!");
+            }
+        });
+    });
+
+});
+
+    </script>
+}
