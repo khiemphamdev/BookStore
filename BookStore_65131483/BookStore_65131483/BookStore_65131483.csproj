@@ -279,6 +279,7 @@
     <Content Include="Views\TaiKhoan\DonHang.cshtml" />
     <Content Include="Views\TaiKhoan\ChiTietDonHang.cshtml" />
     <Content Include="Views\TaiKhoan\CommentCuaToi.cshtml" />
+    <Content Include="Views\Shared\_LayoutAccountPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
