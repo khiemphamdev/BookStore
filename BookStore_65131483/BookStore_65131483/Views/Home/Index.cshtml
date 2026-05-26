@@ -40,14 +40,14 @@
         @foreach (var item in Model)
         {
             <div class="book-card">
-                <a href="@Url.Action("ChiTietSach", "ChiTietSach_65131483", new { id = item.MaSach })">
+                <a href="@Url.Action("ChiTietSach", "ChiTietSach", new { id = item.MaSach })">
                     <div class="book-thumb">
                         <img src="@item.AnhBia" alt="@item.TieuDe" />
                     </div>
                 </a>
                 <div class="book-info">
                     <h3>
-                        <a href="@Url.Action("ChiTietSach", "ChiTietSach_65131483", new { id = item.MaSach })">
+                        <a href="@Url.Action("ChiTietSach", "ChiTietSach", new { id = item.MaSach })">
                             @item.TieuDe
                         </a>
                     </h3>

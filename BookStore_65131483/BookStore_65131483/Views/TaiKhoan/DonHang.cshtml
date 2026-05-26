@@ -194,7 +194,7 @@ format: @<text>
         @* Nút Đánh giá *@
         @if (item.TrangThai == "HoanThanh")
                     {
-        <a class="btn-action btn-rate" href="@Url.Action("DanhGia", "DanhGia_65131483", new { maDH = item.MaDH })">
+        <a class="btn-action btn-rate" href="@Url.Action("DanhGia", "DanhGia", new { maDH = item.MaDH })">
             <i class="bi bi-star-fill"></i> Đánh giá
         </a>
                     }

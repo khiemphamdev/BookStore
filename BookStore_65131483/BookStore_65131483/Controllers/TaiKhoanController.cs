@@ -83,7 +83,7 @@ namespace BookStore_65131483.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else return RedirectToAction("Dashboard", "TrangAdmin_65131483");
+            else return RedirectToAction("Dashboard", "TrangAdmin");
         }
 
         // ================= ĐĂNG XUẤT =================
@@ -103,7 +103,7 @@ namespace BookStore_65131483.Controllers
         {
             var maTK = GetMaTK();
             if (maTK == null)
-                return RedirectToAction("Login", "TaiKhoan_65131483");
+                return RedirectToAction("Login", "TaiKhoan");
 
             var tk = db.TAIKHOANs.Find(maTK);
             return View(tk);
@@ -113,7 +113,7 @@ namespace BookStore_65131483.Controllers
         {
             var maTK = GetMaTK();
             if (maTK == null)
-                return RedirectToAction("Login", "TaiKhoan_65131483");
+                return RedirectToAction("Login", "TaiKhoan");
 
             var tk = db.TAIKHOANs.Find(maTK);
 
@@ -150,7 +150,7 @@ namespace BookStore_65131483.Controllers
         {
             var maTK = GetMaTK();
             if (maTK == null)
-                return RedirectToAction("Login", "TaiKhoan_65131483");
+                return RedirectToAction("Login", "TaiKhoan");
 
             var donHangs = db.DONHANGs
                 .Include(d => d.CHITIETDONHANGs)
@@ -174,14 +174,14 @@ namespace BookStore_65131483.Controllers
             var donHang = db.DONHANGs.Find(maDH);
             db.DONHANGs.Remove(donHang);
             db.SaveChanges();
-            return RedirectToAction("DonHang", "TaiKhoan_65131483");
+            return RedirectToAction("DonHang", "TaiKhoan");
         }
 
         public ActionResult CommentCuaToi()
         {
             var maTK = GetMaTK();
             if (maTK == null)
-                return RedirectToAction("Login", "TaiKhoan_65131483");
+                return RedirectToAction("Login", "TaiKhoan");
 
             var comments = db.DANHGIAs
                 .Include(c => c.SACH)
