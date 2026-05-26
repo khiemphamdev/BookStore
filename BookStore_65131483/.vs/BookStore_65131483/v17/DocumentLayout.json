@@ -1,12 +1,53 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ADMIN\\Desktop\\BookStore_65131483\\BookStore_65131483\\Controllers\\DonHang_65131483Controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|c:\\lap trinh\\asp.net web\\bookstore_65131483\\bookstore_65131483\\bookstore_65131483\\controllers\\chitietsachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|solutionrelative:bookstore_65131483\\controllers\\chitietsachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DonHang_65131483Controller.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\BookStore_65131483\\BookStore_65131483\\Controllers\\DonHang_65131483Controller.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Users\\ADMIN\\Desktop\\BookStore_65131483\\BookStore_65131483\\Controllers\\DonHang_65131483Controller.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\BookStore_65131483\\BookStore_65131483\\Controllers\\DonHang_65131483Controller.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Users\\ADMIN\\Desktop\\BookStore_65131483\\BookStore_65131483\\Controllers\\DonHang_65131483Controller.cs",
+              "ViewState": "AgIAALEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T02:49:11.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChiTietSachController.cs",
+              "DocumentMoniker": "C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\BookStore_65131483\\Controllers\\ChiTietSachController.cs",
+              "RelativeDocumentMoniker": "BookStore_65131483\\Controllers\\ChiTietSachController.cs",
+              "ToolTip": "C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\BookStore_65131483\\Controllers\\ChiTietSachController.cs",
+              "RelativeToolTip": "BookStore_65131483\\Controllers\\ChiTietSachController.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAswBsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T02:48:33.79Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
