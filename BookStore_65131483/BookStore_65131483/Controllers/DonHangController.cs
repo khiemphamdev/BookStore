@@ -108,5 +108,74 @@ namespace BookStore_65131483.Controllers
 
             return Json(new { success = true, tongSoLuong });
         }
+        public ActionResult XemGioHang()
+        {
+            int? maTK = Session["MaTK"] as int?;
+            if (maTK == null)
+            {
+                return RedirectToAction("Login", "TaiKhoan_65131483");
+            }
+
+            var gioHang = LayGioHang();
+            if (gioHang == null || !gioHang.CHITIETDONHANGs.Any())
+            {
+                ViewBag.Message = "Giỏ hàng trống!";
+                return View();
+            }
+
+            return View(gioHang);
+        }
+
+        [HttpPost]
+        public ActionResult DatHang(string DiaChi, string GhiChu)
+        {
+            int? maTK = Session["MaTK"] as int?;
+            if (maTK == null)
+            {
+                // Đồng nhất điều hướng về TaiKhoan_65131483 thay vì "Account" cũ
+                return RedirectToAction("Login", "TaiKhoan_65131483");
+            }
+
+            var donHang = db.DONHANGs.FirstOrDefault(d => d.MaTK == maTK && d.TrangThai == "TrongGioHang");
+            if (donHang == null || !donHang.CHITIETDONHANGs.Any())
+            {
+                return Json(new { success = false, message = "Không có sản phẩm nào để đặt hàng!" });
+            }
+
+            // Kiểm tra số lượng tồn kho trước khi trừ số lượng
+            foreach (var ct in donHang.CHITIETDONHANGs)
+            {
+                if (ct.SACH == null || ct.SACH.SoLuongTon < ct.SoLuong)
+                {
+                    return Json(new { success = false, message = $"Sách '{ct.SACH?.TenSach}' không đủ số lượng trong kho!" });
+                }
+            }
+
+            // Trừ kho sau khi chắc chắn tất cả mặt hàng đều đủ hàng
+            foreach (var ct in donHang.CHITIETDONHANGs)
+            {
+                ct.SACH.SoLuongTon -= ct.SoLuong;
+            }
+
+            // Cập nhật thông tin đơn hàng sang trạng thái chờ xử lý
+            donHang.NgayDat = DateTime.Now;
+            donHang.DiaChiGiao = DiaChi;
+            donHang.PhuongThucThanhToan = "Cod";
+            donHang.GhiChu = GhiChu;
+            donHang.TrangThai = "Chờ xử lý";
+            donHang.TongTien = donHang.CHITIETDONHANGs.Sum(c => c.SoLuong * c.DonGia);
+
+            // Cập nhật địa chỉ mặc định cho tài khoản
+            var taiKhoan = db.TAIKHOANs.Find(maTK);
+            if (taiKhoan != null)
+            {
+                taiKhoan.DiaChi = DiaChi;
+            }
+
+            db.SaveChanges();
+            TempData["Message"] = "Đơn hàng đã được đặt thành công và đang chờ xử lý.";
+
+            return Json(new { success = true });
+        }
     }
 }
