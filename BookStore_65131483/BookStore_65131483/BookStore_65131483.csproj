@@ -286,6 +286,7 @@
     <Content Include="Views\DanhGia\DanhGia.cshtml" />
     <Content Include="Views\ChiTietSach_65131483\ChiTietSach.cshtml" />
     <Content Include="Views\DonHang\ThanhToan.cshtml" />
+    <Content Include="Views\DonHang\XemGioHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

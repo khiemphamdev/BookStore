@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\bookstore_65131483\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|c:\\lap trinh\\asp.net web\\bookstore_65131483\\bookstore_65131483\\bookstore_65131483\\views\\donhang\\xemgiohang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|solutionrelative:bookstore_65131483\\views\\donhang\\xemgiohang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|c:\\lap trinh\\asp.net web\\bookstore_65131483\\bookstore_65131483\\bookstore_65131483\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|solutionrelative:bookstore_65131483\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|c:\\lap trinh\\asp.net web\\bookstore_65131483\\bookstore_65131483\\bookstore_65131483\\views\\donhang\\thanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\bookstore_65131483\\views\\donhang\\thanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E76AE454-59CF-4083-9AEF-8556C778D603}|BookStore_65131483\\BookStore_65131483.csproj|solutionrelative:bookstore_65131483\\views\\donhang\\thanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -18,11 +22,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "XemGioHang.cshtml",
+              "DocumentMoniker": "C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\BookStore_65131483\\Views\\DonHang\\XemGioHang.cshtml",
+              "RelativeDocumentMoniker": "BookStore_65131483\\Views\\DonHang\\XemGioHang.cshtml",
+              "ToolTip": "C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\BookStore_65131483\\Views\\DonHang\\XemGioHang.cshtml",
+              "RelativeToolTip": "BookStore_65131483\\Views\\DonHang\\XemGioHang.cshtml",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAqwJ4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-26T23:05:37.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ThanhToan.cshtml",
               "DocumentMoniker": "C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\BookStore_65131483\\Views\\DonHang\\ThanhToan.cshtml",
               "RelativeDocumentMoniker": "BookStore_65131483\\Views\\DonHang\\ThanhToan.cshtml",
@@ -30,18 +47,17 @@
               "RelativeToolTip": "BookStore_65131483\\Views\\DonHang\\ThanhToan.cshtml",
               "ViewState": "AgIAAE0AAAAAAAAAAAAuwGwBAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-26T22:10:47.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T22:10:47.917Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "DonHangController.cs",
               "DocumentMoniker": "C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\BookStore_65131483\\Controllers\\DonHangController.cs",
               "RelativeDocumentMoniker": "BookStore_65131483\\Controllers\\DonHangController.cs",
               "ToolTip": "C:\\lap trinh\\asp.net web\\BookStore_65131483\\BookStore_65131483\\BookStore_65131483\\Controllers\\DonHangController.cs",
               "RelativeToolTip": "BookStore_65131483\\Controllers\\DonHangController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowBwAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAIwG4AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T02:57:04.92Z",
               "EditorCaption": ""

@@ -1,0 +1,158 @@
+﻿@model BookStore_65131483.Models.DONHANG
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = null;
+    var tongTien = Model?.CHITIETDONHANGs?
+.Sum(ct => ct.SoLuong * ct.DonGia) ?? 0;
+
+}
+<link href="~/Content/GioHang.css" rel="stylesheet" />
+
+
+@if (ViewBag.Message != null)
+{
+
+    <header>
+        <div class="container navbar">
+            <a href="@Url.Action("Index", "Home")" class="logo"><i class="fas fa-book-open"></i> ZenBooks</a>
+        </div>
+    </header>
+    <div style="height: calc(100vh - 330px);">
+        <h2 style="text-align: center">Giỏ hàng trống</h2>
+    </div>
+}
+else
+{
+
+    <header>
+        <div class="container navbar">
+            <a href="@Url.Action("Index", "Home")" class="logo"><i class="fas fa-book-open"></i> ZenBooks</a>
+        </div>
+    </header>
+    <div class="container">
+
+
+        <div class="cart-container">
+            <div class="cart-items">
+                @foreach (var gh in Model.CHITIETDONHANGs.Reverse())
+                {
+                    <div class="cart-item" data-id="@gh.MaCTDH">
+                        <div class="item-img">
+                            <img src="@gh.SACH.AnhBia"
+                                 alt="Book" />
+                        </div>
+                        <div class="item-info">
+                            <h3>@gh.SACH.TieuDe</h3>
+                            <p>Tác giả: @gh.SACH.TACGIA.TenTacGia</p>
+                            <div class="item-price">@gh.SACH.GiaBan.ToString("N0") đ</div>
+                        </div>
+                        <div class="item-actions">
+                            <div class="qty-control">
+                                <button class="qty-btn btn-minus">-</button>
+                                <input type="text" class="qty-val" value="@gh.SoLuong" data-id="@gh.MaCTDH" />
+                                <button class="qty-btn btn-plus">+</button>
+                            </div>
+                            <button class="remove-btn">
+                                <i class="far fa-trash-can"></i> Xóa
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <aside class="order-summary">
+                <h3>Tóm tắt đơn hàng</h3>
+                <div style="margin-top: 20px">
+                    <div class="summary-row">
+                        <span>Tạm tính (@Model.CHITIETDONHANGs.Count() sản phẩm)</span>
+                        <span>@tongTien.ToString("N0") đ</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Phí vận chuyển</span>
+                        <span>Miễn phí</span>
+                    </div>
+                    <div class="promo-code">
+                        <input type="text" placeholder="Mã giảm giá (MGG123)" />
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Tổng cộng</span>
+                        <span>@tongTien.ToString("N0") đ</span>
+                    </div>
+                    <a href="@Url.Action("ThanhToan", "DonHang_65131483")"
+                       class="btn-checkout">
+                        TIẾN HÀNH THANH TOÁN
+                    </a>
+
+                    <p style="
+                font-size: 12px;
+                color: #888;
+                text-align: center;
+                margin-top: 15px;
+              ">
+                        (Đã bao gồm thuế VAT nếu có)
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </div>
+}
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+    // Tăng số lượng
+    $(".btn-plus").click(function () {
+        var row = $(this).closest(".cart-item");
+        var input = row.find(".qty-val");
+        var soLuong = parseInt(input.val()) + 1;
+        input.val(soLuong).trigger("change");
+    });
+
+    // Giảm số lượng
+    $(".btn-minus").click(function () {
+        var row = $(this).closest(".cart-item");
+        var input = row.find(".qty-val");
+        var soLuong = parseInt(input.val());
+        if (soLuong > 1) {
+            input.val(soLuong - 1).trigger("change");
+        }
+    });
+
+    // Cập nhật số lượng
+    $(".qty-val").change(function () {
+        var row = $(this).closest(".cart-item");
+        var maCTDH = row.data("id");
+        var soLuong = $(this).val();
+
+        $.post('@Url.Action("CapNhatSoLuong", "DonHang_65131483")',
+            { maCTDH: maCTDH, soLuong: soLuong },
+            function (res) {
+                if (res.success) {
+                    location.reload();
+                }
+            });
+    });
+
+    // Xóa sản phẩm
+    $(".remove-btn").click(function () {
+        if (!confirm("Bạn có chắc muốn xóa sản phẩm này?")) return;
+
+        var row = $(this).closest(".cart-item");
+        var maCTDH = row.data("id");
+
+        $.post('@Url.Action("XoaGioHang", "DonHang_65131483")',
+            { maCTDH: maCTDH },
+            function (res) {
+                if (res.success) {
+                    row.remove();
+                    location.reload();
+                }
+            });
+    });
+});
+
+</script>
+
