@@ -177,5 +177,55 @@ namespace BookStore_65131483.Controllers
 
             return Json(new { success = true });
         }
+
+
+        public JsonResult XoaGioHang(int maCTDH)
+        {
+            var gioHang = LayGioHang();
+            if (gioHang == null)
+                return Json(new { success = false, message = "Giỏ hàng trống" });
+
+            // Tìm chi tiết đơn hàng cần xóa
+            var chiTiet = db.CHITIETDONHANGs
+                            .FirstOrDefault(c => c.MaCTDH == maCTDH && c.MaDH == gioHang.MaDH);
+
+            if (chiTiet == null)
+                return Json(new { success = false, message = "Sản phẩm không tồn tại trong giỏ hàng" });
+
+            // 1. Xóa mặt hàng khỏi Database 
+            db.CHITIETDONHANGs.Remove(chiTiet);
+
+
+            var giaTriXoa = (chiTiet.DonGia ) * (chiTiet.SoLuong );
+            gioHang.TongTien = Math.Max(0, (gioHang.TongTien ?? 0) - giaTriXoa);
+
+            db.SaveChanges();
+
+            return Json(new { success = true, tongTien = gioHang.TongTien });
+        }
+
+        public JsonResult CapNhatSoLuong(int maCTDH, int soLuong)
+        {
+            var gioHang = LayGioHang();
+            if (gioHang == null)
+                return Json(new { success = false, message = "Giỏ hàng trống" });
+
+            var chiTiet = db.CHITIETDONHANGs
+                            .FirstOrDefault(c => c.MaCTDH == maCTDH && c.MaDH == gioHang.MaDH);
+
+            if (chiTiet == null || soLuong <= 0)
+                return Json(new { success = false, message = "Sản phẩm không hợp lệ" });
+
+            chiTiet.SoLuong = soLuong;
+            db.SaveChanges();
+
+            // Cập nhật lại tổng tiền tổng thể
+            gioHang.TongTien = db.CHITIETDONHANGs
+                                .Where(c => c.MaDH == gioHang.MaDH)
+                                .Sum(c => c.DonGia * c.SoLuong);
+            db.SaveChanges();
+
+            return Json(new { success = true, tongTien = gioHang.TongTien });
+        }
     }
 }

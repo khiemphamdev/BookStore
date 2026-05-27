@@ -176,7 +176,7 @@ style: "col-action",
 format: @<text>
     <div class="action-buttons">
         @* Nút xem chi tiết luôn hiển thị *@
-        <a class="btn-action btn-view" href="@Url.Action("ChiTietDonHang", "TaiKhoan_65131483", new { maDH = item.MaDH })" title="Xem chi tiết">
+        <a class="btn-action btn-view" href="@Url.Action("ChiTietDonHang", "TaiKhoan", new { maDH = item.MaDH })" title="Xem chi tiết">
             <i class="bi bi-eye-fill"></i> Xem
         </a>
 
@@ -184,7 +184,7 @@ format: @<text>
         @if (item.TrangThai == "Chờ xử lý")
 {
         <a class="btn-action btn-cancel"
-           href="@Url.Action("HuyDon", "TaiKhoan_65131483", new { maDH = item.MaDH })"
+           href="@Url.Action("HuyDon", "TaiKhoan", new { maDH = item.MaDH })"
            onclick="return confirm('Bạn có chắc muốn hủy đơn hàng?')">
             <i class="bi bi-x-circle"></i> Hủy
         </a>

@@ -109,7 +109,7 @@
                 <button class="qty-btn" onclick="increaseQty()">+</button>
             </div>
 
-            <a class="btn-buy btn-secondary btn-add-cart" data-id="@Model.MaSach" data-gia="@Model.GiaBan">
+            <a  class="btn-buy btn-secondary btn-add-cart" data-id="@Model.MaSach" data-gia="@Model.GiaBan">
                 <i class="fas fa-cart-plus" style="margin-right: 8px"></i> Thêm vào
                 giỏ
             </a>
@@ -284,7 +284,7 @@ $(document).ready(function(){
 
 
         $.ajax({
-            url: '@Url.Action("ThemGioHang", "DonHang_65131483")',
+            url: '@Url.Action("ThemGioHang", "DonHang")',
             type: 'POST',
             data: { maSach: maSach, soLuong: soLuong, donGia: donGia, __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() },
             success: function(res){

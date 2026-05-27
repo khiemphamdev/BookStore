@@ -206,6 +206,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\ChiTietSach.css" />
+    <Content Include="Content\GioHang.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\StyleAdminPage.css" />
     <Content Include="Content\StyleSheet1.css" />
@@ -284,16 +286,15 @@
     <Content Include="Views\Shared\_LayoutAccountPage.cshtml" />
     <Content Include="Views\TimKiem\TimKiem.cshtml" />
     <Content Include="Views\DanhGia\DanhGia.cshtml" />
-    <Content Include="Views\ChiTietSach_65131483\ChiTietSach.cshtml" />
     <Content Include="Views\DonHang\ThanhToan.cshtml" />
     <Content Include="Views\DonHang\XemGioHang.cshtml" />
+    <Content Include="Views\ChiTietSach\index.cshtml" />
+    <Content Include="Views\TacGia\AuthorList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\ChiTietSach\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\TacGia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

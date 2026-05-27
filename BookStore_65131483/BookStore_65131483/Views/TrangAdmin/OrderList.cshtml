@@ -102,7 +102,7 @@
         "<div class='btn-group btn-group-sm action-group'>" +
 
             "<a class='btn btn-outline-warning primary-button' href='" +
-                Url.Action("XemCTDH", "TrangAdmin_65131483", new { maDH = item.MaDH }) +
+                Url.Action("XemCTDH", "TrangAdmin", new { maDH = item.MaDH }) +
             "'>" +
                 "<i class='bi bi-eye'></i> Xem" +
             "</a>" +
@@ -113,14 +113,14 @@
             "<ul class='dropdown-menu'>" +
                 "<li><a class='dropdown-item' href='#'>Hủy</a></li>" +
                 "<li><a class='dropdown-item text-success' href='" +
-                    Url.Action("CapNhatTrangThai", "TrangAdmin_65131483", new { maDH = item.MaDH, trangThai = 2 }) +
+                    Url.Action("CapNhatTrangThai", "TrangAdmin", new { maDH = item.MaDH, trangThai = 2 }) +
                 "'>Đang vận chuyển</a></li>" +
                 "<li><a class='dropdown-item text-success' href='" +
-                    Url.Action("CapNhatTrangThai", "TrangAdmin_65131483", new { maDH = item.MaDH, trangThai = 3 }) +
+                    Url.Action("CapNhatTrangThai", "TrangAdmin", new { maDH = item.MaDH, trangThai = 3 }) +
                     "'>Đã giao hàng</a></li>" +
 
                 "<li><a class='dropdown-item text-danger' href='" +
-                    Url.Action("CapNhatTrangThai", "TrangAdmin_65131483", new { maDH = item.MaDH, trangThai = 1 }) +
+                    Url.Action("CapNhatTrangThai", "TrangAdmin", new { maDH = item.MaDH, trangThai = 1 }) +
                 "' onclick='return confirm(\"Bạn có chắc muốn xóa?\")'>Xóa</a></li>" +
             "</ul>" +
 

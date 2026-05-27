@@ -325,7 +325,7 @@
                 </div>
 
                 <button class="btn-confirm" onclick="ThanhToan()">XÁC NHẬN ĐẶT HÀNG</button>
-                <a href="@Url.Action("XemGioHang", "DonHang_65131483")" class="back-to-cart"><i class="fas fa-arrow-left"></i> Quay lại giỏ hàng</a>
+                <a href="@Url.Action("XemGioHang", "DonHang")" class="back-to-cart"><i class="fas fa-arrow-left"></i> Quay lại giỏ hàng</a>
             </aside>
         </div>
     </div>
@@ -339,7 +339,7 @@
         const token = $('input[name="__RequestVerificationToken"]').val();
 
         $.ajax({
-            url: '@Url.Action("DatHang", "DonHang_65131483")',
+            url: '@Url.Action("DatHang", "DonHang")',
             type: 'POST',
             data: {
                 DiaChi: diaChi,

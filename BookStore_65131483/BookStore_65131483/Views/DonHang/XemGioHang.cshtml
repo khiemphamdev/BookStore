@@ -78,7 +78,7 @@ else
                         <span>Tổng cộng</span>
                         <span>@tongTien.ToString("N0") đ</span>
                     </div>
-                    <a href="@Url.Action("ThanhToan", "DonHang_65131483")"
+                    <a href="@Url.Action("ThanhToan", "DonHang")"
                        class="btn-checkout">
                         TIẾN HÀNH THANH TOÁN
                     </a>
@@ -127,7 +127,7 @@ else
         var maCTDH = row.data("id");
         var soLuong = $(this).val();
 
-        $.post('@Url.Action("CapNhatSoLuong", "DonHang_65131483")',
+        $.post('@Url.Action("CapNhatSoLuong", "DonHang")',
             { maCTDH: maCTDH, soLuong: soLuong },
             function (res) {
                 if (res.success) {
@@ -143,7 +143,7 @@ else
         var row = $(this).closest(".cart-item");
         var maCTDH = row.data("id");
 
-        $.post('@Url.Action("XoaGioHang", "DonHang_65131483")',
+        $.post('@Url.Action("XoaGioHang", "DonHang")',
             { maCTDH: maCTDH },
             function (res) {
                 if (res.success) {
